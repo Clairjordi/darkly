@@ -15,18 +15,5 @@ Il propose un site vulnérable hébergé sur une machine virtuelle qui contient 
 ## 2. Prérequis & lancement
 
 - Une **machine virtuelle**
-- Un navigateur web pointant vers l’IP donnée (par exemple `172.16.60.128`) sur le port 80 
+- Un navigateur web pointant vers l’IP donnée (par exemple `10.13.248.4`) sur le port 80 
  
-
-
-Insecure Direct Object Reference (IDOR)
-
-ou
-
-Password Reset Poisoning / Email Tampering
-
- flag mot de passe oublie: enlever maxlength + admin@borntosec.com + hidden(facultatif)
-http://10.13.248.4/?page=recover
-
-
-

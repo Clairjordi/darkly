@@ -37,9 +37,9 @@ La faille de Cookie Tampering (ou manipulation de cookie) se produit lorsque l�
    Le cookie doit contenir uniquement un identifiant de session opaque (ex. session_id), dont les données réelles (rôle, permissions) sont stockées sur le serveur
 
 * Activer les protections de cookie:  
-    HttpOnly = true → empêche l’accès depuis JavaScript  
-    Secure = true → empêche la transmission hors HTTPS  
-    SameSite = Strict → limite les attaques CSRF  
+    * HttpOnly = true → empêche l’accès depuis JavaScript  
+    * Secure = true → empêche la transmission hors HTTPS  
+    * SameSite = Strict → limite les attaques CSRF  
 
 * Forcer l’usage de HTTPS
 
@@ -48,9 +48,9 @@ La faille de Cookie Tampering (ou manipulation de cookie) se produit lorsque l�
 
 * Utiliser des mécanismes d’authentification robustes  
    Exemples :  
-        - Sessions serveur  
-        - JWT signés et non modifiables  
-        - ACL gérées côté backend  
+    * Sessions serveur  
+    * JWT signés et non modifiables  
+    * ACL gérées côté backend  
 
 
 ## Conclusion

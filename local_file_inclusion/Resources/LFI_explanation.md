@@ -1,6 +1,6 @@
 # Local File Inclusion (LFI)
 
-![alt text](Screenshot_lfi.png)
+![alt text](Screenshot_flag.png)
 
 
 ## Description
@@ -11,6 +11,7 @@ En modifiant ce paramètre, il est possible d’accéder à des fichiers situés
 ## Comment reproduire la faille
 
 1. Ouvrir l'image **nsa_prism** dans un nouvel onglet ou ```http://<IP_address>/?page=media&src=nsa```
+
 2. Remplacer les valeurs ```media&src=nsa``` par ```../../../../../../../etc/passwd```  
    soit ```http://<IP_address>/?page=../../../../../../../etc/passwd```
 
