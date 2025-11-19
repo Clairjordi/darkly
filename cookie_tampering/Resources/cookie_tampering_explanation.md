@@ -10,7 +10,7 @@ La faille de Cookie Tampering (ou manipulation de cookie) se produit lorsque lâ€
 
 ## Comment reproduire la faille
 
-1. Aller sur la page de Login: ```http://<IP_address>/?page=signin```
+1. Aller sur la page de Login: `http://<IP_address>/?page=signin`
 
 2. Ouvrir les DevTools du navigateur (onglet Application â†’ Cookies).
 

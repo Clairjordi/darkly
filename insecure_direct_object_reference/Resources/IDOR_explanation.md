@@ -10,13 +10,13 @@ Une Insecure Direct Object Reference (IDOR) est une vulnérabilité où une appl
 
 ## Comment reproduire la faille
 
-1. Accéder à la page du mot de passe oublié ou ```http://<IP_ADDRESS>/?page=recover```
+1. Aller sur la page du mot de passe oublié ou `http://<IP_ADDRESS>/?page=recover`
 
 2. Faire un inspect (F12) sur le bouton **SUBMIT**
 
 3. Supprimer le maxlength via l’inspecteur du navigateur (F12)
 
-4. Modifier l’adresse email via l’inspecteur du navigateur (F12) par ```admin@borntosec.com```
+4. Modifier l’adresse email via l’inspecteur du navigateur (F12) par `admin@borntosec.com`
 
 5. Soumettre le formulaire
 

