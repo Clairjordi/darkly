@@ -10,21 +10,19 @@ La faille de Cookie Tampering (ou manipulation de cookie) se produit lorsque l�
 
 ## Comment reproduire la faille
 
-1. Aller sur la page de Login: `http://<IP_address>/?page=signin`
+1. Ouvrir les DevTools du navigateur (onglet Application → Cookies).
 
-2. Ouvrir les DevTools du navigateur (onglet Application → Cookies).
-
-3. Localiser le cookie **I_am_admin**
+2. Localiser le cookie **I_am_admin**
 
 ![alt text](Screenshot_cookie.png)
 
-4. Constater qu’il est affiché en clair, qu’il utilise un hash MD5 simple, et qu’il est modifable par l’utilisateur:  
+3. Constater qu’il est affiché en clair, qu’il utilise un hash MD5 simple, et qu’il est modifable par l’utilisateur:  
     68934a3e9455fa72420237eb05902327 -> la valeur à false
 
-5. Modifier la valeur du cookie pour représenter un statut administrateur  
+4. Modifier la valeur du cookie pour représenter un statut administrateur  
     b326b5062b2f0e69046810717534cb09 -> la valeur à true 
 
-6. Refaire une tentative de connexion et constater que l’authentification est contournée:  
+5. Refaire une tentative de connexion et constater que l’authentification est contournée:  
     l'application nous connecte sans connaitre les identifiants ni le mot de passe car maintenant nous sommes considérés comme un administrateur
 
 
