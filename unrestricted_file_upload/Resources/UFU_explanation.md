@@ -11,7 +11,7 @@ Cela peut permettre à un attaquant d’uploader un script (par exemple PHP) et 
 
 ## Comment reproduire la faille
 
-1. Aller sur la page Add Image ou `http://10.13.248.4/?page=upload#`
+1. Aller sur la page Add Image ou `http://<IP_ADRESS>/?page=upload#`
 
 2. Faire une inspection (F12) sur le formulaire et constater qu'il n'y a pas de contrôle strict effectué sur les fichiers téléchargés
 

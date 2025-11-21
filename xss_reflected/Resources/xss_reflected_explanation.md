@@ -1,4 +1,4 @@
-# XSS Reflected
+# XSS Reflected (Cross-Site Scripting Reflected)
 
 ![alt text](Screenshot_flag.png)
 

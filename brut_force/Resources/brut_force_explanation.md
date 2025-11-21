@@ -8,7 +8,7 @@ Le Brute Force est une attaque consistant à tester automatiquement une grande q
 
 ## Comment reproduire la faille
 
-1. Constater que la page de login (**SIGN IN**) utilise une requête GET lors de la soumission du formulaire : `http://10.13.248.4/?page=signin&username=admin&password=<TEST>&Login=Login#`
+1. Constater que la page de login (**SIGN IN**) utilise une requête GET lors de la soumission du formulaire : `http://<IP_ADRESS>/?page=signin&username=admin&password=<TEST>&Login=Login#`
 
 2. Créer un fichier contenant des mots de passe fréquents : `passwords.txt`
 
@@ -52,7 +52,7 @@ Le Brute Force est une attaque consistant à tester automatiquement une grande q
 
         ```
 
-    * Lancer le script : `python3 script.py 10.13.248.4`
+    * Lancer le script : `python3 script.py <IP_ADRESS>` 
 
 
 

