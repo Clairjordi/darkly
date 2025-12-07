@@ -1,7 +1,5 @@
 # Hidden Directory
 
-![alt text](hidden_directory.png)
-
 ## Description
 
 La faille Hidden Directory apparaît lorsqu’un serveur web expose un répertoire sensible accessible publiquement.
@@ -27,8 +25,7 @@ Cette vulnérabilité permet à un attaquant d’accéder à des dossiers censé
     wget --recursive --no-parent --execute robots=off http://<IP_ADDRESS>/.hidden/
      ```
 
-5. Utiliser un script de recherche 
-Rechercher le flag dans les fichiers récupérés :
+5. Se placer dans le dossier téléchargé et utiliser un script de recherche pour trouver le flag : 
      ```
     bash ./finder.sh | grep flag
      ```

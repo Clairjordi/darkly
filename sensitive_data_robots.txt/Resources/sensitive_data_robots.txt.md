@@ -1,6 +1,6 @@
 # Sensitive data robots.txt
 
-![alt text](sensitive_datat_robots.txt.png)
+![alt text](sensitive_data_robots.txt.png)
 
 ## Description
 
