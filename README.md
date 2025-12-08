@@ -15,5 +15,5 @@ Il propose un site vulnérable hébergé sur une machine virtuelle qui contient 
 ## 2. Prérequis & lancement
 
 - Une **machine virtuelle**
-- Un navigateur web pointant vers l’IP donnée (par exemple `10.13.248.4`) sur le port 80 
+- Un navigateur web pointant vers l’IP donnée (par exemple `10.13.248.4`) sur le port 80.
  

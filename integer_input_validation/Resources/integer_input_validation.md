@@ -28,7 +28,7 @@ Si l’entrée n’est pas filtrée ou convertie strictement en entier, un attaq
 ## Recommandations pour empêcher la faille
 
 * Valider strictement les entrées utilisateur :
-     *Vérifier que la valeur est bien un entier (isnumeric(), ctype_digit, filtre backend…).
+     * Vérifier que la valeur est bien un entier (isnumeric(), ctype_digit, filtre backend…).
 
 * Refuser toute chaîne contenant autre chose que 0-9.
 
